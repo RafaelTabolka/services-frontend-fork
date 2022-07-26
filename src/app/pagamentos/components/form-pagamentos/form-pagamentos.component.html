@@ -1,0 +1,59 @@
+<div>
+  <h2 mat-dialog-title>Cadastrar Pagamento</h2>
+  <mat-spinner color="accent" mode="indeterminate" diameter="20" *ngIf="salvandoPagamento"></mat-spinner>
+</div>
+  <section mat-dialog-content>
+    <form action="" [formGroup]="formPagamentos" (ngSubmit)="cadastrarPagamentos()">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Id do Chamado</mat-label>
+          <input 
+          type="text" 
+          placeholder="Ex: 265"
+          matInput 
+          formControlName="idPagamento" 
+          >
+          <mat-error>
+            <span> Campo obrigatório! </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Valor</mat-label>
+          <input
+            type="number"
+            placeholder="0"
+            matInput
+            formControlName="valor"
+          >
+          <span matPrefix>R$&nbsp;</span>
+          <span matSuffix>.00</span>
+          <mat-error>
+            <span> Campo obrigatório! </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Forma de Pagamento</mat-label>
+          <input 
+          type="text" 
+          placeholder="Ex: Crédito"
+          matInput 
+          formControlName="formPagamento"
+          >
+          <mat-error>
+            <span> Campo obrigatório! </span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Status do Pagamento</mat-label>
+          <mat-select [formControl]="selected" formControlName="status">
+            <mat-option value="valid">LANCADO</mat-option>
+            <mat-option value="valid">QUITADO</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button type="submit" [disabled]="formPagamentos.invalid"  
+        mat-raised-button color="accent" id="salvar">Cadastrar Pagamento</button>
+  </form>
+</section>
+      
