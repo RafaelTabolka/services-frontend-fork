@@ -51,7 +51,7 @@ export class PagamentoComponent implements OnInit {
     .subscribe(
       (valores) => {
         this.desabilitar = this.formPagamentos.invalid || !(valores.nome != this.pagamento.idPagamento || valores.valor != this.pagamento.valor 
-          || valores.formPagamento != this.pagamento.formPagamento || valores.status != this.pagamento.status)
+          || valores.formPagamento != this.pagamento.formPagamento || valores.status.StatusPagamento != this.pagamento.status)
       }
     )
   }
@@ -79,6 +79,9 @@ export class PagamentoComponent implements OnInit {
     const p: Pagamento = { ...this.formPagamentos.value }
     p.idPagamento = this.pagamento.idPagamento
 
+    console.log(p);
+    
+
     const obsSalvar: Observable<any> = this.pagService.AtualizarPagamentos(p)
 
     obsSalvar
@@ -92,7 +95,7 @@ export class PagamentoComponent implements OnInit {
                 duration: 3000
               })
 
-              this.recuperarPagamento(pag.id)
+              this.recuperarPagamento(pag.idPagamento)
             }
           )
         }
@@ -101,7 +104,7 @@ export class PagamentoComponent implements OnInit {
           duration: 3000
         })
 
-        this.recuperarPagamento(resultado.id)
+        this.recuperarPagamento(resultado.idPagamento)
       }
     )
   }

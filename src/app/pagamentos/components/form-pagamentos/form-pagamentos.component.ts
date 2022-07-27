@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Pagamento } from '../../models/pagamento';
 import { PagamentoService } from '../../services/pagamento.service';
 
@@ -17,8 +17,7 @@ export class FormPagamentosComponent implements OnInit {
   formPagamentos: FormGroup = this.fb.group({
     idPagamento: ['', [ Validators.required ]],
     valor: ['', [ Validators.required ]],
-    formPagamento: ['', [ Validators.required ]],
-    status: ['', [ Validators.required ]]
+    formPagamento: ['', [ Validators.required ]]
   })
 
   selected = new FormControl('valid', [Validators.required, Validators.pattern('valid')]);
@@ -30,7 +29,8 @@ export class FormPagamentosComponent implements OnInit {
   constructor(
     private snackBar: MatSnackBar,
     private fb: FormBuilder,
-    private pagService: PagamentoService
+    private pagService: PagamentoService,
+    private nav: Router
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +40,9 @@ export class FormPagamentosComponent implements OnInit {
     this.salvandoPagamento = true
     const pag: Pagamento = this.formPagamentos.value;
 
+    console.log(pag);
+    
+    
     this.pagService.cadastrarPagamento(pag)
     .subscribe(
       () => {
@@ -51,7 +54,6 @@ export class FormPagamentosComponent implements OnInit {
       verticalPosition: 'top',
       duration: 5000,
     });
-    this.formPagamentos.reset();
+    this.nav.navigateByUrl('/pagamentos');
   }
-
 }
