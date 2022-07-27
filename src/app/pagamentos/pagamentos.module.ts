@@ -7,8 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material/material.module';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { ListarPagamentosComponent } from './pages/listar-pagamentos/listar-pagamentos.component';
-import { NavbarPagamentosComponent } from './components/navbar-pagamentos/navbar-pagamentos.component';
 import { FormPagamentosComponent } from './components/form-pagamentos/form-pagamentos.component';
+import { CompartilharComponentesModule } from '../compartilhar-componentes/compartilhar-componentes.module';
 
 
 
@@ -16,7 +16,6 @@ import { FormPagamentosComponent } from './components/form-pagamentos/form-pagam
   declarations: [ 
     ListarPagamentosComponent,
     PagamentoComponent,
-    NavbarPagamentosComponent,
     FormPagamentosComponent
   ],
   imports: [
@@ -24,7 +23,8 @@ import { FormPagamentosComponent } from './components/form-pagamentos/form-pagam
     PagamentosRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    CompartilharComponentesModule
   ]
 })
 export class PagamentosModule { }

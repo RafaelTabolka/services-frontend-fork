@@ -1,32 +1,6 @@
 <!-- Toolbar -->
-<div class="containerToolbar">
-  <div id="servicesToolbar">
-    <aside>
-      <h1>Services</h1>
-    </aside>
-  </div>
 
-  <div>
-    <mat-form-field color="accent">
-      
-      <input class="search" matInput (keyup)="applyFilter($event)" #input placeholder="Pesquisar"/>
-    </mat-form-field> 
-  </div>
-
-  <div id="buttons">
-    <button mat-button [matMenuTriggerFor]="menuFuncionarios">
-      Funcionários
-    </button>
-    <mat-menu #menuFuncionarios="matMenu">
-      <a mat-menu-item routerLink="/funcionarios">Funcionários</a>
-      <a mat-menu-item routerLink="/cargos">Cargos</a>
-      <a mat-menu-item routerLink="/pagamentos">Pagamentos</a>
-    </mat-menu>
-    <button mat-icon-button (click)="authService.signOut()">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </div>
-</div>
+<app-navbar></app-navbar>
 
 <!-- Formulário Para Cadastro de Cargo -->
 
@@ -81,6 +55,13 @@
 
   <!-- Tabela de Cargos -->
   <div>
+    <div>
+      <mat-form-field color="accent">
+        
+        <input class="search" matInput (keyup)="applyFilter($event)" #input placeholder="Pesquisar"/>
+      </mat-form-field> 
+    </div>
+
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z16">
       <ng-container matColumnDef="id">
         <th class="centralizar" mat-header-cell *matHeaderCellDef>Id</th>
@@ -132,8 +113,7 @@
 
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">
-          No data matching the filter
-          "{{ input.value }}"
+          Dados não encontrados
         </td>
       </tr>
     </table>
