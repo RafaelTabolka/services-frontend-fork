@@ -1,0 +1,58 @@
+<div class="loader" *ngIf="chamado == undefined; else principal">
+    <p>{{ naoEncontrado == true ? 'Chamado não encontrado' : 'Procurando Chamado...' }}</p>
+    <mat-spinner mode="indeterminate" color="primary" *ngIf="naoEncontrado == false"></mat-spinner>
+  </div>
+  <ng-template #principal>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Editar Chamado</mat-card-title>       
+      </mat-card-header>
+      <mat-card-content>
+        <form action="" [formGroup]="formChamados" (ngSubmit)="salvarAtualizacoes()">
+        <mat-form-field appearance="fill">
+                <mat-label>IdChamado</mat-label>
+                <input type="text" matInput placeholder="Ex: 240" formControlName="idChamado">
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Titulo</mat-label>
+            <input type="text" matInput placeholder="Novo Titulo" formControlName="titulo">
+        </mat-form-field>
+          
+        <mat-form-field appearance="fill">
+            <mat-label>Descricao</mat-label>
+            <input type="text" matInput placeholder="Descrição" formControlName="descricao">
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Data de entrada </mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+          </mat-form-field>
+          
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Status do Chamado</mat-label>
+            <mat-select [formControl]="selected" formControlName="status">
+              <mat-option value="RECEBIDO">RECEBIDO</mat-option>
+              <mat-option value="ATRIBUIDO">ATRIBUIDO</mat-option>
+              <mat-option value="CONCLUIDO">CONCLUIDO</mat-option>
+              <mat-option value="ARQUIVADO">ARQUIVADO</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+  
+          <button
+            type="submit"
+            mat-raised-button
+            color="accent"
+            id="salvar"
+            [disabled]="desabilitar"
+          >Salvar atualizações</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+  
