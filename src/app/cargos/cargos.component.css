@@ -1,6 +1,6 @@
 .container{
   display: grid;
-  background-color: rgb(201, 195, 195);
+  
   color: white;
   height: 100%;
   gap: 6px;
@@ -47,8 +47,8 @@ aside h1{
 /* Tabela de cargos */
 
 .search{
-  color: white;
-  width: 100px;
+  color: black;
+  width: 300px;
 }
 
 mat-toolbar-row {

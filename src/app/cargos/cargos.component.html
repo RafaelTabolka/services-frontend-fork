@@ -55,10 +55,9 @@
 
   <!-- Tabela de Cargos -->
   <div>
-    <div>
+    <div class="search">
       <mat-form-field color="accent">
-        
-        <input class="search" matInput (keyup)="applyFilter($event)" #input placeholder="Pesquisar"/>
+        <input matInput (keyup)="applyFilter($event)" #input placeholder="Pesquisar"/>
       </mat-form-field> 
     </div>
 
@@ -90,20 +89,6 @@
         <td class="centralizar" mat-cell *matCellDef="let element">
           <button (click)="openDialogEdit(element.idCargo)" mat-icon-button matTooltip="Editar Cargo">
             <mat-icon>edit</mat-icon>{{ element.edit }}
-          </button>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="delete">
-        <th class="centralizar" mat-header-cell *matHeaderCellDef>Excluir</th>
-        <td class="centralizar" mat-cell *matCellDef="let element">
-          <button
-          color="warn"
-            (click)="openDialogDelete(element.idCargo)"
-            mat-icon-button
-            matTooltip="Excluir Cargo"
-          >
-            <mat-icon>delete</mat-icon>{{ element.delete }}
           </button>
         </td>
       </ng-container>
