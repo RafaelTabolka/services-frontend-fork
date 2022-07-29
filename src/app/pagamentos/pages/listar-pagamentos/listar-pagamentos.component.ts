@@ -22,8 +22,7 @@ export class ListarPagamentosComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private pagService: PagamentoService,
-    private snackBar: MatSnackBar
+    private pagService: PagamentoService
   ) { }
 
   ngOnInit(): void {

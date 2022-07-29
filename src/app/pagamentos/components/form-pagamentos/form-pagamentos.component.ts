@@ -42,7 +42,6 @@ export class FormPagamentosComponent implements OnInit {
 
     console.log(pag);
     
-    
     this.pagService.cadastrarPagamento(pag)
     .subscribe(
       () => {

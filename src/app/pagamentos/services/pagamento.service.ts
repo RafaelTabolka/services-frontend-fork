@@ -26,7 +26,7 @@ export class PagamentoService {
   }
 
   cadastrarPagamento(pag: Pagamento):Observable<Pagamento> {
-    return this.http.post<Pagamento>(`${this.url}`, pag)
+    return this.http.post<Pagamento>(`${this.url}/${pag}`, pag)
     .pipe(
       tap(() => {
       this.atualizarPagamento$.next(true)
