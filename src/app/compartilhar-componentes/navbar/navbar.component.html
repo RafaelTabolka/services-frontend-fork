@@ -4,14 +4,14 @@
     <span class="separador"></span>
     <button  matTooltip="Menu de navegação" mat-button [matMenuTriggerFor]="menuFuncionarios">Menu de Navegação</button>
     <mat-menu #menuFuncionarios="matMenu">
-      <a  mat-menu-item routerLink="/funcionarios">Funcionários</a>
-      <a mat-menu-item routerLink="/cargos">Cargos</a>
-      <a mat-menu-item routerLink="/clientes">Clientes</a>
+      <a matTooltip="Funcionarios" mat-menu-item routerLink="/funcionarios">Funcionários</a>
+      <a matTooltip="Cargos" mat-menu-item routerLink="/cargos">Cargos</a>
+      <a matTooltip="Clientes" mat-menu-item routerLink="/clientes">Clientes</a>
     </mat-menu>
-
+   
    
 
-    <button mat-icon-button (click)="openDialogConfirmExit()">
+    <button matTooltip="logoff"mat-icon-button (click)="openDialogConfirmExit()">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar-row>
