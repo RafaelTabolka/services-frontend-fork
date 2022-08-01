@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -31,7 +32,8 @@ export class PagamentoComponent implements OnInit {
     private pagService: PagamentoService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private title:Title
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,10 @@ export class PagamentoComponent implements OnInit {
       (params) => {
         let idPagamento = parseInt(params.get('idPagamento') ?? '0')
         this.recuperarPagamento(idPagamento)
+
+        this.pagService.getPagamentosById(idPagamento).subscribe(() => {
+          this.title.setTitle("Pagamento " + this.formPagamentos.value.idPagamento)
+        })
       }
     )
   }
@@ -47,7 +53,7 @@ export class PagamentoComponent implements OnInit {
     this.formPagamentos.valueChanges
     .subscribe(
       (valores) => {
-        this.desabilitar = this.formPagamentos.invalid || !(valores.nome != this.pagamento.idPagamento || valores.valor != this.pagamento.valor 
+        this.desabilitar = this.formPagamentos.invalid || !(valores.valor != this.pagamento.valor 
           || valores.formPagamento != this.pagamento.formPagamento || valores.status.StatusPagamento != this.pagamento.status)
       }
     )
@@ -76,10 +82,7 @@ export class PagamentoComponent implements OnInit {
     const p: Pagamento = { ...this.formPagamentos.value }
     p.idPagamento = this.pagamento.idPagamento
 
-    console.log(p);
-    
-
-    const obsSalvar: Observable<any> = this.pagService.AtualizarPagamentos(p)
+    const obsSalvar: Observable<any> = this.pagService.atualizarPagamentos(p)
 
     obsSalvar
     .subscribe(
@@ -96,12 +99,13 @@ export class PagamentoComponent implements OnInit {
             }
           )
         }
-
+        else {
         this.snackBar.open('Pagamento salvo com sucesso', 'Ok', {
           duration: 3000
         })
 
         this.recuperarPagamento(resultado.idPagamento)
+        }
       }
     )
   }

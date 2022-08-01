@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Pagamento } from '../../models/pagamento';
 import { PagamentoService } from '../../services/pagamento.service';
 
@@ -30,29 +31,30 @@ export class FormPagamentosComponent implements OnInit {
     private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private pagService: PagamentoService,
-    private nav: Router
+    private dialogRef: MatDialogRef<FormPagamentosComponent>
   ) { }
 
   ngOnInit(): void {
   }
 
-  cadastrarPagamentos() {
+  cadastrarPagamentos(): void{
     this.salvandoPagamento = true
-    const pag: Pagamento = this.formPagamentos.value;
+    const pag: Pagamento = this.formPagamentos.value
+    let obsSalvar: Observable<any>
+    let idChamado = this.formPagamentos.value.idPagamento
 
     console.log(pag);
     
-    this.pagService.cadastrarPagamento(pag)
-    .subscribe(
+    obsSalvar = this.pagService.cadastrarPagamento(pag)
+    
+    obsSalvar.subscribe(
       () => {
-      this.pagService.getPagamentos().subscribe((newValues) => {
-        this.pagamentos = newValues
-      });
-    });
-    this.snackBar.open('Pagamento cadastrado com sucesso!', 'Ok', {
-      verticalPosition: 'top',
-      duration: 5000,
-    });
-    this.nav.navigateByUrl('/pagamentos');
+        this.snackBar.open('Pagamento cadastrado com sucesso!', 'Ok', {
+          verticalPosition: 'top',
+          duration: 5000,
+        })
+    })
+ 
+    this.dialogRef.close()
   }
 }

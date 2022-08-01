@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormPagamentosComponent } from '../../components/form-pagamentos/form-pagamentos.component';
 import { Pagamento } from '../../models/pagamento';
 import { PagamentoService } from '../../services/pagamento.service';
