@@ -26,6 +26,10 @@ const routes: Routes = [
     loadChildren: () => import('./cargos/cargos-router/cargos-router.module').then(m => m.CargosRouterModule)
   },
   {
+    path: 'chamados',
+    loadChildren:() => import('./chamados/chamados-router/chamados-router.module').then(m => m.ChamadosRouterModule)
+  },
+  {
     path: 'pagamentos',
     loadChildren: () => import('./pagamentos/pagamentos.module').then(m => m.PagamentosModule)
   }
