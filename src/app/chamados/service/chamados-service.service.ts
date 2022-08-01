@@ -32,14 +32,14 @@ export class ChamadosServiceService {
     }))
   }
 
-  cadastrarChamados(office:Chamados, cliente: Cliente):Observable<Chamados> {
-    return this.http.post<Chamados>(`${this.url}/${cliente.idCliente}`, office).pipe(tap(() => {
+  cadastrarChamados(chamado:Chamados, idCliente:number):Observable<Chamados> {
+    return this.http.post<Chamados>(`${this.url}/${idCliente}`, chamado).pipe(tap(() => {
       this.update$.next(true)
     }))
   }
 
-  editarChamados(office:Chamados):Observable<Chamados> {
-    return this.http.put<Chamados>(`${this.url}/${office.idChamado}`, office)
+  editarChamados(chamado:Chamados):Observable<Chamados> {
+    return this.http.put<Chamados>(`${this.url}/${chamado.idChamado}`, chamado)
     .pipe(tap(() => {
       this.update$.next(true)
     }))

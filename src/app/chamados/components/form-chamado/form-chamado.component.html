@@ -52,7 +52,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Funcionário</mat-label>
       <input
         type="text"
@@ -60,9 +60,27 @@
         matInput
         formControlName="funcionario"
       />
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field appearance="fill">
+      <mat-label>Funcionário</mat-label>
+      <mat-select formControlName="funcionario">
+        <ng-container *ngFor="let funcionario of funcionarios">
+        <mat-option value={{funcionario.idFuncionario}}>{{funcionario.nome}}</mat-option> 
+      </ng-container>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Cliente</mat-label>
+      <mat-select formControlName="cliente">
+        <ng-container *ngFor="let cliente of clientes">
+        <mat-option value={{cliente.idCliente}}>{{cliente.nome}}</mat-option> 
+      </ng-container>
+      </mat-select>
+    </mat-form-field>
+
+   <!--  <mat-form-field appearance="fill">
       <mat-label>Cliente</mat-label>
       <input
         type="text"
@@ -70,7 +88,7 @@
         matInput
         formControlName="cliente"
       />
-    </mat-form-field>
+    </mat-form-field> -->
 
     <button
       type="submit"

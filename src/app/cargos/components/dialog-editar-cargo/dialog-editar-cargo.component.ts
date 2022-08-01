@@ -12,7 +12,7 @@ import { CargosServiceService } from '../../service/cargos-service.service';
 export class DialogEditarCargoComponent implements OnInit {
   formOffice: FormGroup = this.fb.group({
     idCargo:[''],
-    nome: ['', [Validators.required, Validators.maxLength(20)]],
+    nome: ['', [Validators.required, Validators.maxLength(50)]],
     descricao: ['', [Validators.required, Validators.maxLength(60)]],
     salario: ['', [Validators.required]],
   });

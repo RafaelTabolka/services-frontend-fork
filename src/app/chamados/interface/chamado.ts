@@ -2,13 +2,13 @@ import { Cliente } from "src/app/clientes/models/cliente"
 import { Funcionario } from "src/app/funcionarios/models/funcionario"
 
 export interface Chamados {
-    idChamado?: number
+    idChamado?:number
     titulo:string
     descricao:string
     dataEntrada:Date
-    status: string
-    funcionario: Funcionario | null
-    cliente: Cliente | null
+    status:string
+    funcionario:Funcionario
+    cliente:Cliente
     
   
 }
