@@ -42,7 +42,7 @@
       (change)="recuperarFoto($event)"
       formControlName="foto"
     >
-    <button
+    <button   matTooltip="selecione uma imagem"
       type="button"
       mat-stroked-button
       color="primary"
@@ -50,7 +50,7 @@
     >Selecione uma imagem</button>
 
     
-    <button [mat-dialog-close]="true" type="submit" [disabled]="formFuncionario.invalid" mat-raised-button color="accent" id="salvar">Salvar</button>
+    <button  matTooltip="Salvar" [mat-dialog-close]="true" type="submit" [disabled]="formFuncionario.invalid" mat-raised-button color="accent" id="salvar">Salvar</button>
 
   </form>
 </section>
