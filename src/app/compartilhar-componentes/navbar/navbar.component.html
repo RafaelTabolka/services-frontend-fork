@@ -3,15 +3,14 @@
     <h1>Services</h1>
     <span class="separador"></span>
     <button  matTooltip="Menu de navegação" mat-button [matMenuTriggerFor]="menuFuncionarios">Menu de Navegação</button>
-    <mat-menu #menuFuncionarios="matMenu">
 
-      <a mat-menu-item routerLink="/funcionarios">Funcionários</a>
-      <a mat-menu-item routerLink="/cargos">Cargos</a>
-      <a mat-menu-item routerLink="/clientes">Clientes</a>
-      <a mat-menu-item routerLink="/chamados">Chamados</a>
+    <mat-menu #menuFuncionarios="matMenu">
+      <a matTooltip="Página de funcionários" mat-menu-item routerLink="/funcionarios">Funcionários</a>
+      <a matTooltip="Página de cargos" mat-menu-item routerLink="/cargos">Cargos</a>
+      <a matTooltip="Página de clientes" mat-menu-item routerLink="/clientes">Clientes</a>
+       <a matTooltip="Página de chamados" mat-menu-item routerLink="/chamados">Chamados</a>
+       <a matTooltip="Página de chamados" mat-menu-item routerLink="/pagamentos">Pagamentos</a>
     </mat-menu>
-   
-   
 
     <button matTooltip="logoff"mat-icon-button (click)="openDialogConfirmExit()">
       <mat-icon>logout</mat-icon>

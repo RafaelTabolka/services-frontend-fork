@@ -3,3 +3,7 @@ mat-form-field{
     flex-direction:column;
     width: 300px;
 }
+
+.botaoCancelar{
+    margin-left: 10px;
+}

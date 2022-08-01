@@ -84,14 +84,11 @@ export class ListarChamadosComponent implements OnInit {
     )
   }
 
-  abrirFormChamados(): void {
+  abrirFormCadastrarChamados(): void {
    
     const ref = this.dialog.open(FormChamadoComponent);
-    ref.afterClosed().subscribe((boolean) => {
-      
-        this.recuperarChamado();
-      
-      
+    ref.afterClosed().subscribe(() => {
+      this.recuperarChamado()
     });
   }
 
