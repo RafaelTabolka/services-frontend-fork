@@ -26,9 +26,6 @@ export class PagamentoComponent implements OnInit {
   desabilitar: boolean = true
   naoEncontrado: boolean = false
 
-  selected = new FormControl('valid', [Validators.required, Validators.pattern('valid')]);
-  selectFormControl = new FormControl('valid', [Validators.required, Validators.pattern('valid')]);
-
   constructor(
     public authService: AuthService,
     private pagService: PagamentoService,
