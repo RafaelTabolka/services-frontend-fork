@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ChamadosComponent } from '../chamados.component';
 import { DialogExcluirChamadosComponent } from '../components/dialog-excluir-chamado/dialog-excluir-chamado.component';
 import { FormChamadoComponent } from '../components/form-chamado/form-chamado.component';
 import { Chamados } from '../interface/chamado';
@@ -15,7 +16,7 @@ export class ListarChamadosComponent implements OnInit {
 
  
   chamado: Chamados[] = []
-  colunas: Array<string> = ['idChamado','titulo','descricao','dataEntrada','status','funcionario','cliente','pagamento', 'excluir' ]
+  colunas: Array<string> = ['idChamado','titulo','descricao','dataEntrada','status','funcionario','cliente','pagamento', 'editar', 'excluir' ]
 
     constructor(
     private dialog: MatDialog, 
@@ -41,7 +42,7 @@ export class ListarChamadosComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogExcluirChamadosComponent)
 
    
-    dialogRef.afterClosed()
+   /*  dialogRef.afterClosed()
     .subscribe(
       (deletar) => {
         
@@ -63,7 +64,7 @@ export class ListarChamadosComponent implements OnInit {
           )
         }
       }
-    )
+    ) */
   }
 
   recuperarChamado(): void {
@@ -82,11 +83,39 @@ export class ListarChamadosComponent implements OnInit {
   }
 
   abrirFormChamados(): void {
-    const ref = this.dialog.open(FormChamadoComponent)
-    ref.afterClosed().subscribe(
-      () => {
-        this.recuperarChamado()
+   
+    const ref = this.dialog.open(FormChamadoComponent);
+    ref.afterClosed().subscribe((boolean) => {
+      
+        this.recuperarChamado();
+      
+      
+    });
+  }
+
+  abrirEditarChamados(id: number) {
+    let ref = this.dialog.open(ChamadosComponent)
+    this.chamService.getChamadosId(id).subscribe((newValues) => {
+      ref.componentInstance.formChamados.setValue({
+        titulo: newValues.titulo,
+        descricao: newValues.descricao,
+        dataEntrada: newValues.dataEntrada,
+        status: newValues.status,
+        funcionario: newValues.funcionario.idFuncionario,
+        cliente: newValues.cliente?.idCliente
+      
+      });
+    });
+    ref.afterClosed().subscribe((boolean) => {
+      console.log(boolean);
+      if(boolean){
+        const updatedChamado = ref.componentInstance.formChamados.value
+        this.chamService.editarChamados(updatedChamado).subscribe((a)=> {
+          this.chamService.getChamados().subscribe()
+        })
       }
-    )
+      
+    })
+   
   }
 }

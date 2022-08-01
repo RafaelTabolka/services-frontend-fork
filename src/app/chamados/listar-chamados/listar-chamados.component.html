@@ -21,9 +21,7 @@
       <ng-container matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef>Titulo</th>
         <td mat-cell *matCellDef="let c">
-          <a [routerLink]="'/chamados/' + c.idChamados" routerLinkActive="ativo">
-            {{ c.titulo }}
-          </a>
+         {{ c.titulo }}         
         </td>
       </ng-container>
 
@@ -34,7 +32,7 @@
 
       <ng-container matColumnDef="dataEntrada">
         <th mat-header-cell *matHeaderCellDef>Data Entrada</th>
-        <td mat-cell *matCellDef="let c">{{ c.dataEntrada }}</td>
+        <td mat-cell *matCellDef="let c">{{ c.dataEntrada | date: "dd/MM/yyyy" }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
@@ -44,7 +42,7 @@
 
       <ng-container matColumnDef="funcionario">
         <th mat-header-cell *matHeaderCellDef>Funcionário</th>
-        <td mat-cell *matCellDef="let c">{{ c.funcionario.nome }}</td>
+        <td mat-cell *matCellDef="let c">{{ c?.funcionario?.nome || "Funcionario  não atribuido"}}</td>
       </ng-container>
 
       <ng-container matColumnDef="pagamento">
@@ -55,9 +53,17 @@
 
       <ng-container matColumnDef="cliente">
         <th mat-header-cell *matHeaderCellDef>Clientes</th>
-        <td mat-cell *matCellDef="let c">{{ c.cliente.nome }}</td>
+        <td mat-cell *matCellDef="let c">{{ c?.cliente?.nome || "Cliente não encontrado" }}</td>
       </ng-container>
 
+      <ng-container matColumnDef="editar">
+        <th  mat-header-cell *matHeaderCellDef>Editar</th>
+        <td  mat-cell *matCellDef="let element">
+          <button (click)="abrirEditarChamados(element.idChamado)" mat-icon-button matTooltip="Editar chamado">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
       <ng-container matColumnDef="excluir">
         <th mat-header-cell *matHeaderCellDef>Excluir</th>
