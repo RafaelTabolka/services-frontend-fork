@@ -94,18 +94,10 @@ export class ListarChamadosComponent implements OnInit {
   }
 
   abrirEditarChamados(id: number) {
+    let chamado = this.chamado.find((c)=> c.idChamado == id) as Chamados
     let ref = this.dialog.open(ChamadosComponent)
-    this.chamService.getChamadosId(id).subscribe((newValues) => {
-      ref.componentInstance.formChamados.setValue({
-        titulo: newValues.titulo,
-        descricao: newValues.descricao,
-        dataEntrada: newValues.dataEntrada,
-        status: newValues.status,
-        funcionario: newValues.funcionario.idFuncionario,
-        cliente: newValues.cliente?.idCliente
-      
-      });
-    });
+    ref.componentInstance.chamado = chamado
+   
     ref.afterClosed().subscribe((boolean) => {
       console.log(boolean);
       if(boolean){

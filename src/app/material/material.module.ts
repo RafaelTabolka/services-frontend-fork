@@ -73,6 +73,7 @@ import { MatTooltipModule } from '@angular/material/tooltip'
     MatTabsModule,
     MatToolbarModule,
     MatTreeModule,
+    MatTooltipModule,
     MatTooltipModule
   ]
 })

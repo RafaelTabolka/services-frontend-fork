@@ -7,7 +7,7 @@ export interface Chamados {
     descricao:string
     dataEntrada:Date
     status: string
-    funcionario: Funcionario
+    funcionario: Funcionario | null
     cliente: Cliente | null
     
   

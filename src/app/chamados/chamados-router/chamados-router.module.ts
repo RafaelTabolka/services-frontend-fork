@@ -9,7 +9,6 @@ import { ChamadosComponent } from '../chamados.component';
 import { ListarChamadosComponent } from '../listar-chamados/listar-chamados.component';
 import { FormChamadoComponent } from '../components/form-chamado/form-chamado.component';
 import { CompartilharComponentesModule } from 'src/app/compartilhar-componentes/compartilhar-componentes.module';
-import { DialogEditarChamadosComponent } from '../components/dialog-editar-chamado/dialog-editar-chamado.component';
 import { DialogExcluirChamadosComponent } from '../components/dialog-excluir-chamado/dialog-excluir-chamado.component';
 
 
@@ -18,7 +17,6 @@ import { DialogExcluirChamadosComponent } from '../components/dialog-excluir-cha
     ChamadosComponent,
     ListarChamadosComponent,
     FormChamadoComponent,
-    DialogEditarChamadosComponent,
     DialogExcluirChamadosComponent
 
   ],

@@ -4,12 +4,7 @@
       <mat-card-header>
         <mat-card-title>Editar Chamado</mat-card-title>       
       </mat-card-header>
-  
-            <mat-form-field appearance="fill">
-                <mat-label>IdChamado</mat-label>
-                <input type="text" matInput placeholder="Ex: 240" formControlName="idChamado">
-        </mat-form-field>
-        
+                     
         <mat-form-field appearance="fill">
             <mat-label>Titulo</mat-label>
             <input type="text" matInput placeholder="Novo Titulo" formControlName="titulo">
@@ -22,13 +17,13 @@
         
         <mat-form-field appearance="fill">
           <mat-label>Data de entrada</mat-label>
-          <input type="date" matInput placeholder="dataEntrada" formControlName="dataEntrada">
+          <input type="date" matInput placeholder="dataEntrada" formControlName="dataEntrada" ngDefaultControl>
       </mat-form-field>
           
   
           <mat-form-field appearance="fill">
             <mat-label>Status do Chamado</mat-label>
-            <mat-select [formControl]="selected" formControlName="status">
+            <mat-select formControlName="status">
               <mat-option value="RECEBIDO">RECEBIDO</mat-option>
               <mat-option value="ATRIBUIDO">ATRIBUIDO</mat-option>
               <mat-option value="CONCLUIDO">CONCLUIDO</mat-option>
@@ -36,7 +31,18 @@
             </mat-select>
           </mat-form-field>
           
-          <button 
+        <mat-form-field appearance="fill">
+            <mat-label>Funcionário</mat-label>
+            <!-- <input type="text" matInput placeholder="Funcionario id" formControlName="funcionario"> -->
+            <mat-select formControlName="funcionario">
+              <ng-container *ngFor="let funcionario of funcionarios">
+                <mat-option [value]="funcionario.idFuncionario">{{ funcionario.nome }}</mat-option>
+              </ng-container>
+            </mat-select>
+
+        </mat-form-field>
+        
+        <button 
       [disabled]="disabledButton" 
       type="submit" 
       mat-raised-button 
