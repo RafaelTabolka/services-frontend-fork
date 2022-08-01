@@ -15,10 +15,10 @@
             <input type="text" matInput placeholder="Descrição" formControlName="descricao">
         </mat-form-field>
         
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Data de entrada</mat-label>
           <input type="date" matInput placeholder="dataEntrada" formControlName="dataEntrada" ngDefaultControl>
-      </mat-form-field>
+      </mat-form-field> -->
           
   
           <mat-form-field appearance="fill">
@@ -31,16 +31,14 @@
             </mat-select>
           </mat-form-field>
           
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
             <mat-label>Funcionário</mat-label>
-            <!-- <input type="text" matInput placeholder="Funcionario id" formControlName="funcionario"> -->
             <mat-select formControlName="funcionario">
               <ng-container *ngFor="let funcionario of funcionarios">
                 <mat-option [value]="funcionario.idFuncionario">{{ funcionario.nome }}</mat-option>
               </ng-container>
             </mat-select>
-
-        </mat-form-field>
+        </mat-form-field> -->
         
         <button 
       [disabled]="disabledButton" 

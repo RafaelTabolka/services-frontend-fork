@@ -60,8 +60,8 @@ export class ChamadosComponent<D> implements OnInit {
     descricao: this.chamado.descricao,
     dataEntrada: this.chamado.dataEntrada,
     status: this.chamado.status,
-    funcionario: this.chamado.funcionario,
-    cliente: this.chamado.cliente
+   /*  funcionario: this.chamado.funcionario,
+    cliente: this.chamado.cliente */
   
     })
     this.todosFuncionarios()
@@ -78,10 +78,10 @@ export class ChamadosComponent<D> implements OnInit {
       !(valuesChanges.idChamado != this.chamado.idChamado ||
        valuesChanges.titulo !=this.chamado.titulo ||
         valuesChanges.descricao != this.chamado.descricao ||
-        valuesChanges.dataEntrada != this.chamado.dataEntrada ||
-        valuesChanges.status != this.chamado.status || 
-        valuesChanges.funcionario != this.chamado.funcionario?.idFuncionario ||
-        valuesChanges.cliente != this.chamado.cliente?.idCliente)
+        valuesChanges.status != this.chamado.status
+        /* valuesChanges.funcionario != this.chamado.funcionario?.idFuncionario ||
+        valuesChanges.cliente != this.chamado.cliente?.idCliente) */
+        )
          
       })  
 

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Cliente } from 'src/app/clientes/models/cliente';
+import { Funcionario } from 'src/app/funcionarios/models/funcionario';
 import { Chamados } from '../interface/chamado';
 
 @Injectable({
@@ -30,8 +32,8 @@ export class ChamadosServiceService {
     }))
   }
 
-  cadastrarChamados(office:Chamados, idCliente: number):Observable<Chamados> {
-    return this.http.post<Chamados>(`${this.url}/${idCliente}`, office).pipe(tap(() => {
+  cadastrarChamados(office:Chamados, cliente: Cliente):Observable<Chamados> {
+    return this.http.post<Chamados>(`${this.url}/${cliente.idCliente}`, office).pipe(tap(() => {
       this.update$.next(true)
     }))
   }

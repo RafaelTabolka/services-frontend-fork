@@ -36,36 +36,38 @@ export class ListarChamadosComponent implements OnInit {
       }
     )
   }
+  deletarChamado(id: number ): void {
 
-  deletarChamado( id: number): void {
-   
-    const dialogRef = this.dialog.open(DialogExcluirChamadosComponent)
 
-   
-   /*  dialogRef.afterClosed()
-    .subscribe(
-      (deletar) => {
-        
-        if (deletar == true) {
-          this.chamService.deleteChamadosById(id)
-          .subscribe(
-            () => {
-              this.snackbar.open('Chamado deletado', 'Ok', {
-                duration: 3000
-              })
-              this.recuperarChamado()
-            },
-            (error) => {
-              this.snackbar.open('Não foi possível deletar o chamado', 'Ok', {
-                duration: 3000
-              })
-              console.log(error)
-            }
-          )
-        }
+    const dialogRef = this.dialog.open(DialogExcluirChamadosComponent);
+    
+    dialogRef.afterClosed().subscribe((deletar) => {
+ 
+      if (deletar) {
+        this.chamService.deleteChamadosById(id).subscribe(
+          () => {
+             this.chamService.getChamados().subscribe((newValues)=>{
+              this.chamado= newValues
+             })
+            this.snackbar.open('Chamado deletado', 'Ok', {
+              duration: 3000,
+            });
+          },
+          (error) => {
+            this.snackbar.open('Não foi possível deletar o chamado', 'Ok', {
+              duration: 3000,
+            });
+            console.log(error);
+          }
+        );
       }
-    ) */
+    });
   }
+  
+
+   
+   
+  
 
   recuperarChamado(): void {
     this.chamService.getChamados().subscribe(
@@ -95,14 +97,15 @@ export class ListarChamadosComponent implements OnInit {
 
   abrirEditarChamados(id: number) {
     let chamado = this.chamado.find((c)=> c.idChamado == id) as Chamados
+    console.log (chamado)
     let ref = this.dialog.open(ChamadosComponent)
     ref.componentInstance.chamado = chamado
    
-    ref.afterClosed().subscribe((boolean) => {
-      console.log(boolean);
-      if(boolean){
+    ref.afterClosed().subscribe((resultado) => {
+      console.log(resultado);
+      if(resultado){
         const updatedChamado = ref.componentInstance.formChamados.value
-        this.chamService.editarChamados(updatedChamado).subscribe((a)=> {
+          this.chamService.editarChamados(updatedChamado).subscribe((a)=> {
           this.chamService.getChamados().subscribe()
         })
       }
