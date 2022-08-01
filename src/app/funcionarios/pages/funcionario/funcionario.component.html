@@ -11,16 +11,16 @@
       <mat-card-title>{{ funcionario.nome }}</mat-card-title>
       <mat-card-subtitle>{{ funcionario.email }}</mat-card-subtitle>
 
-      <button mat-icon-button color="primary" id="menu" [mat-menu-trigger-for]="menu">
+      <button matTooltip="Editar" mat-icon-button color="primary" id="menu" [mat-menu-trigger-for]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/funcionarios">
+        <button matTooltip="Voltar" mat-menu-item routerLink="/funcionarios">
           <mat-icon>arrow_back</mat-icon>
           Voltar
         </button>
-        <button mat-menu-item (click)="deletar()">
+        <button matTooltip="Deletar funcionario" mat-menu-item (click)="deletar()">
           <mat-icon>delete</mat-icon>
           Deletar funcionário
         </button>
@@ -52,11 +52,11 @@
  
         <input type="file" id="input-foto" #inputFoto (change)="recuperarFoto($event)" formControlName="foto">
 
-        <button type="button" mat-stroked-button color="primary" (click)="inputFoto.click()">
+        <button matTooltip="Atualizar imagem"type="button" mat-stroked-button color="primary" (click)="inputFoto.click()">
           Atualizar imagem
         </button>
 
-        <button
+        <button matTooltip="Salvar atualizações"
           type="submit"
           mat-raised-button
           color="accent"
