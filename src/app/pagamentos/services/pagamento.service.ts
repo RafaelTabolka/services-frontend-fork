@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Chamados } from 'src/app/chamados/interface/chamado';
 import { Pagamento } from '../models/pagamento';
 
 @Injectable({
@@ -26,14 +27,14 @@ export class PagamentoService {
   }
 
   cadastrarPagamento(pag: Pagamento):Observable<Pagamento> {
-    return this.http.post<Pagamento>(`${this.url}/${pag}`, pag)
+    return this.http.post<Pagamento>(`${this.url}/${pag.idPagamento}`, pag)
     .pipe(
       tap(() => {
       this.atualizarPagamento$.next(true)
     }))
   }
 
-  AtualizarPagamentos(pag: Pagamento):Observable<Pagamento> {
+  atualizarPagamentos(pag: Pagamento):Observable<Pagamento> {
     return this.http.put<Pagamento>(`${this.url}/${pag.idPagamento}`, pag)
     .pipe(
       tap(() => {

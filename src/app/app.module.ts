@@ -14,6 +14,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { DialogExcluirCargoComponent } from './cargos/components/dialog-excluir-cargo/dialog-excluir-cargo.component';
 import { DialogEditarCargoComponent } from './cargos/components/dialog-editar-cargo/dialog-editar-cargo.component';
 import { RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
+import { AtribuirFuncionarioComponent } from './chamados/components/atribuir-funcionario/atribuir-funcionario.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
     AppComponent,
     DialogExcluirCargoComponent,
     DialogEditarCargoComponent,
+    AtribuirFuncionarioComponent,
     
   ],
   imports: [

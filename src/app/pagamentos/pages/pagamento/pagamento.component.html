@@ -6,20 +6,11 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>Editar Pagamento</mat-card-title>
+      <mat-card-subtitle>Id Pagamento nº {{ pagamento.idPagamento }}</mat-card-subtitle>
     </mat-card-header>
     
     <mat-card-content>
       <form action="" [formGroup]="formPagamentos" (ngSubmit)="salvarAtualizacoes()">
-
-        <mat-form-field appearance="fill">
-          <mat-label>Id do Chamado</mat-label>
-          <input 
-          type="text" 
-          matInput 
-          placeholder="id Chamado corrigido" 
-          formControlName="idPagamento"
-          >
-        </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Valor</mat-label>

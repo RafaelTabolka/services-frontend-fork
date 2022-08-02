@@ -1,5 +1,5 @@
 export interface Cliente {
-idCliente?: string
+idCliente?: number
 nome: string
 email: string
 enderecoCliente: string[]
