@@ -1,67 +1,64 @@
 <div>
+
   <h2 mat-dialog-title>Novo Chamado</h2>
-  <mat-spinner color="accent" mode="indeterminate" diameter="20" *ngIf="salvarChamado"></mat-spinner>
+  
+  <mat-spinner
+    color="accent"
+    mode="indeterminate"
+    diameter="20"
+    *ngIf="salvarChamado"
+  ></mat-spinner>
 </div>
+
 <section mat-dialog-content>
   <form action="" [formGroup]="formChamado" (ngSubmit)="salvar()">
-   
-
     <mat-form-field appearance="fill">
       <mat-label>idChamado</mat-label>
       <input
         type="number"
         placeholder="Ex: 123"
         matInput
-        formControlName="idChamado">
-      </mat-form-field>
+        formControlName="idChamado"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>titulo</mat-label>
+      <input
+        type="text"
+        placeholder="Ex: Titulo"
+        matInput
+        formControlName="titulo"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Descrição</mat-label>
+      <input
+        type="text"
+        placeholder="Ex: Descrição"
+        matInput
+        formControlName="descricao"
+      />
+    </mat-form-field>
     
-      <mat-form-field appearance="fill">
-        <mat-label>titulo</mat-label>
-        <input
-          type="text"
-          placeholder="Ex: Titulo"
-          matInput
-          formControlName="titulo">
-        </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Cliente</mat-label>
+      <mat-select formControlName="cliente">
+        <ng-container *ngFor="let cliente of clientes">
+          <mat-option value={{cliente.idCliente}}>{{cliente.nome}}</mat-option> 
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Descrição</mat-label>
-          <input
-            type="text"
-            placeholder="Ex: Descrição"
-            matInput
-            formControlName="descricao">
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Data de Entrada</mat-label>
-            <input
-              type="date"
-              placeholder="Ex: 123"
-              matInput
-              formControlName="dataEntrada">
-            </mat-form-field>          
-                    
-              <mat-form-field appearance="fill">
-                <mat-label>Funcionário</mat-label>
-                <input
-                  type="text"
-                  placeholder="Ex: José"
-                  matInput
-                  formControlName="funcionario">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                  <mat-label>Cliente</mat-label>
-                  <input
-                    type="text"
-                    placeholder="Ex: Antônio"
-                    matInput
-                    formControlName="cliente">
-                  </mat-form-field>
-
-  
-
-    <button type="submit" [disabled]="formChamado.invalid" mat-raised-button color="accent" id="salvar">Salvar</button>
+    <button
+      type="submit"
+      [disabled]="formChamado.invalid"
+      mat-raised-button
+      color="accent"
+      id="salvar"
+    >
+      Salvar
+    </button>
   </form>
 </section>

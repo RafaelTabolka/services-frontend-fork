@@ -120,7 +120,7 @@ export class ListarFuncionariosComponent implements OnInit {
      * faz a requisição dos funcionários novamente.
      */
     
-    ref.afterClosed().subscribe((boolean) => {
+    ref.afterClosed().subscribe(() => {
       
         this.recuperarFuncionarios();
       

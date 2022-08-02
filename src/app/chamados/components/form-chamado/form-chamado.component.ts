@@ -1,80 +1,77 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { Cliente } from 'src/app/clientes/models/cliente';
+import { ClientesService } from 'src/app/clientes/services/clientes.service';
+import { Funcionario } from 'src/app/funcionarios/models/funcionario';
 import { Chamados } from '../../interface/chamado';
 import { ChamadosServiceService } from '../../service/chamados-service.service';
-
 
 @Component({
   selector: 'app-form-chamados',
   templateUrl: './form-chamado.component.html',
-  styleUrls: ['./form-chamado.component.css']
+  styleUrls: ['./form-chamado.component.css'],
 })
 export class FormChamadoComponent implements OnInit {
-
   formChamado: FormGroup = this.fb.group({
-    idChamado: ['', [ Validators.required ]],
-    titulo:['', [Validators.required]],
+    idChamado: ['', [Validators.required]],
+    titulo: ['', [Validators.required]],
     descricao: [''],
-    dataEntrada: ['',[Validators.required]],
-    funcionario:[''],
-    cliente:['',[Validators.required]]
-    
-  })
+    cliente: ['', [Validators.required]]
+  });
 
-  salvarChamado: boolean = false
-
+  chamados!: Chamados[];
+  funcionarios!: Funcionario[];
+  clientes!: Cliente[];
+  salvarChamado: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private funcChamado: ChamadosServiceService,
-    private dialogRef: MatDialogRef<FormChamadoComponent>, 
-    private snackbar: MatSnackBar 
-  ) { }
+    private chamadoService: ChamadosServiceService,
+    private dialogRef: MatDialogRef<FormChamadoComponent>,
+    private snackbar: MatSnackBar,
+    private clienteService: ClientesService
+  ) {}
 
   ngOnInit(): void {
+    this.buscarTodosOsClientes()
   }
-
-  
 
   salvar(): void {
     this.salvarChamado = true
     const c: Chamados = this.formChamado.value
     let obsSalvar: Observable<any>
-    let idCliente = this.formChamado.value.cliente
-    console.log(idCliente)
-
-
-   /* obsSalvar = this.funcChamado.cadastrarChamados(c, idCliente)
+    const idCliente = this.formChamado.value.cliente
+    c.cliente = null
     console.log(c)
-  
+
+    obsSalvar = this.chamadoService.cadastrarChamados(c, idCliente)
+
     obsSalvar.subscribe(
-      (resultado) => {
-       
-        if (resultado instanceof Promise) {
-         
-          resultado.then((obs$) => {
-            
-            obs$.subscribe(
-              () => {
-                
-                this.snackbar.open('Chamado salvo com sucesso', 'Ok', {
-                  duration: 3000
-                })
-                this.dialogRef.close()
-              }
-            )
-          })
-        } else {
-          
-          this.snackbar.open('Chamado salvo com sucesso', 'Ok', {
-            duration: 3000
-          })
-          this.dialogRef.close()
-        }
-      }
-    )*/
+      () => {
+        this.snackbar.open('Chamado Cadastrado!', 'Ok', {
+          verticalPosition: 'top',
+          duration: 3000,
+        });
+      },
+      () => {
+        this.snackbar.open('Falha ao cadastrar o chamado!', 'Ok', {
+          verticalPosition: 'top',
+          duration: 3000,
+        });
+      })
+    this.dialogRef.close()
+  }
+
+  buscarTodosOsClientes() {
+    this.clienteService.getClientes().subscribe((newValues) => {
+      this.clientes = newValues;
+    });
   }
 }

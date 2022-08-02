@@ -41,7 +41,6 @@ export class FormPagamentosComponent implements OnInit {
     this.salvandoPagamento = true
     const pag: Pagamento = this.formPagamentos.value
     let obsSalvar: Observable<any>
-    let idChamado = this.formPagamentos.value.idPagamento
 
     console.log(pag);
     
